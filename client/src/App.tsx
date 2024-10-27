@@ -12,7 +12,7 @@ import theme from './theme.tsx';
 
 function App() {
   return (
-    <CssVarsProvider defaultMode="light" disableTransitionOnChange theme={theme}>
+    <CssVarsProvider defaultMode="dark" disableTransitionOnChange theme={theme}>
       <CssBaseline />
       <GlobalStyles
         styles={{

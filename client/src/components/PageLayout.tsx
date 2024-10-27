@@ -13,11 +13,11 @@ const PageLayout = () => {
           pt: { xs: 'calc(12px + var(--Header-height))', md: 'calc(12px + var(--Header-height))' },
           display: 'flex',
           flexDirection: 'column',
-          position: 'fixed',
-          top: 0,
+          // position: 'fixed',
+          // top: 0,
           width: '100vw',
           backgroundColor: 'background.body',
-          height: '100dvh',
+          // height: '100dvh',
         }}
       >
         <Box
@@ -28,6 +28,7 @@ const PageLayout = () => {
             maxWidth: '1200px',
             mx: 'auto',
             overflow: 'auto',
+            height: '100%',
           }}
         >
           <Outlet />
