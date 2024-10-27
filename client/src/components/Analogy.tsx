@@ -62,18 +62,18 @@ const Analogy = () => {
           }}
         >
           <Input
-            placeholder="King"
-            value={king}
-            onChange={(e) => {setKing(e.target.value.replace(/\s+/g, '').toLowerCase()); console.log(e.target.value)}} // Disallow spaces
+            placeholder="Man"
+            value={man}
+            onChange={(e) => {setMan(e.target.value.replace(/\s+/g, '').toLowerCase()); console.log(e.target.value)}} // Disallow spaces
             sx={{ minWidth: '100px', maxWidth: '100px', flex: 1 }}
           />
           <Typography level='body-md' sx={{ whiteSpace: 'nowrap' }}>
             is to
           </Typography>
           <Input
-            placeholder="man"
-            value={man}
-            onChange={(e) => setMan(e.target.value.replace(/\s+/g, '').toLowerCase())} // Disallow spaces
+            placeholder="king"
+            value={king}
+            onChange={(e) => setKing(e.target.value.replace(/\s+/g, '').toLowerCase())} // Disallow spaces
             sx={{ minWidth: '100px', maxWidth: '100px', flex: 1 }}
           />
           <Typography level='body-md' sx={{ whiteSpace: 'nowrap' }}>
