@@ -24,3 +24,21 @@ export function toggleSidebar() {
     }
   }
 }
+
+export async function callApi(url: string) {
+  const response = await fetch(url);
+
+  if (response.status === 400) {
+    const errorData = await response.json();
+    throw new Error(errorData.error);
+  } else if (!response.ok) {
+    throw new Error('An unknown error occurred');
+  }
+
+  const data: { word: string; score: number }[] = await response.json();
+
+  // Convert the JSON data to a list of tuples
+  const resultTuples: [string, number][] = data.map(({ word, score }) => [word, score]);
+
+  return resultTuples;
+}

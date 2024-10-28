@@ -1,35 +1,33 @@
 import { Box, Button, Input, Typography } from "@mui/joy";
 import { useState } from "react";
 import ResultTable from "./ResultTable";
+import { callApi } from "../utils";
+import CustomSnack from "./CustomSnack";
 
 const Analogy = () => {
-  // State to hold the values of the inputs
   const [king, setKing] = useState("");
   const [man, setMan] = useState("");
   const [woman, setWoman] = useState("");
 
   const [result, setResult] = useState<[string, number][]>([]);
 
+  const [snackText, setSnackText] = useState<string>('');
+
   // Handler for form submission
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault(); // Prevent default form submission behavior
 
-    // Construct the API URL using the input values
     const url = `https://adenhaus.pythonanywhere.com/analogy/?pos1=${woman}&pos2=${king}&neg=${man}&topn=1`;
 
     try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data: { word: string; score: number }[] = await response.json();
-
-      // Convert the JSON data to a list of tuples
-      const resultTuples: [string, number][] = data.map(({ word, score }) => [word, score]);
-
-      setResult(resultTuples);
+      const data = await callApi(url);
+      setResult(data);
     } catch (error) {
-      alert(`Error fetching data: ${error}`);
+      if (error instanceof Error) {
+        setSnackText(error.message);
+      } else {
+        setSnackText('An unexpected error occurred');
+      }
     }
   };
 
@@ -65,6 +63,7 @@ const Analogy = () => {
               gap: 2,
               flexWrap: 'wrap',
               alignItems: 'center',
+              justifyContent: 'center'
             }}
           >
             <Input
@@ -120,8 +119,9 @@ const Analogy = () => {
           <Box sx={{ minHeight: '30px' }}>
           </Box>
         </form>
-        {result.length !== 0 ? <Box sx={{minHeight: '100px'}}><ResultTable result={result}/></Box> : <Box sx={{minHeight: '100px'}}></Box>}
+        {result.length !== 0 ? <Box sx={{ minHeight: '100px' }}><ResultTable result={result} /></Box> : <Box sx={{ minHeight: '100px' }}></Box>}
       </Box>
+      <CustomSnack text={snackText} open={snackText !== ''} setSnackText={setSnackText} />
     </>
   );
 };
