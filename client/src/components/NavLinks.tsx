@@ -1,8 +1,12 @@
 import { DashboardRounded } from "@mui/icons-material";
-import { Box, Button, Link, Typography } from "@mui/joy";
+import { Box, Button, Divider, Link, Typography } from "@mui/joy";
 import { NavLink, useLocation } from 'react-router-dom';
 
-const NavLinks = () => {
+interface Props {
+  expanded: boolean;
+}
+
+const NavLinks = (props: Props) => {
   const location = useLocation();
 
   return (
@@ -10,9 +14,9 @@ const NavLinks = () => {
       <Link
         href="/analogy"
       >
-        <Typography level='body-md'
+        <Typography level={ props.expanded ? 'body-md' : 'body-lg' }
           sx={(theme) => ({
-            color: location.pathname === "/analogy" ? "#f6651f" : 'primary',
+            color: location.pathname === "/analogy" ? "#9135e8" : 'primary',
           })}
         >
           Analogy
@@ -21,9 +25,9 @@ const NavLinks = () => {
       <Link
         href="/similarity"
       >
-        <Typography level='body-md'
+        <Typography level={ props.expanded ? 'body-md' : 'body-lg' }
           sx={(theme) => ({
-            color: location.pathname === "/similarity" ? "#f6651f" : 'primary',
+            color: location.pathname === "/similarity" ? "#9135e8" : 'primary',
           })}
         >
           Similarity
@@ -32,13 +36,29 @@ const NavLinks = () => {
       <Link
         href="/groups"
       >
-        <Typography level='body-md'
+        <Typography level={ props.expanded ? 'body-md' : 'body-lg' }
           sx={(theme) => ({
-            color: location.pathname === "/groups" ? "#f6651f" : 'primary',
+            color: location.pathname === "/groups" ? "#9135e8" : 'primary',
             // textDecoration: location.pathname === "/groups" ? 'underline' : 'none',
           })}
         >
           Groups
+        </Typography>
+      </Link>
+      {props.expanded ?
+        <Divider orientation='vertical' />
+        : <Divider />
+      }
+      <Link
+        href="/about"
+      >
+        <Typography level={ props.expanded ? 'body-md' : 'body-lg' }
+          sx={(theme) => ({
+            color: location.pathname === "/about" ? "#9135e8" : 'primary',
+            // textDecoration: location.pathname === "/groups" ? 'underline' : 'none',
+          })}
+        >
+          About
         </Typography>
       </Link>
     </>

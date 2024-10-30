@@ -26,6 +26,7 @@ const Similarity = () => {
       } else {
         setSnackText('An unexpected error occurred');
       }
+      setResult([]);
     }
   };
 
@@ -60,7 +61,7 @@ const Similarity = () => {
             <Input
               placeholder="Vector"
               value={word}
-              onChange={(e) => { setWord(e.target.value.replace(/\s+/g, '').toLowerCase()); console.log(e.target.value) }} // Disallow spaces
+              onChange={(e) => {setWord(e.target.value.replace(/\s+/g, '').toLowerCase())}} // Disallow spaces
               sx={{ minWidth: '100px', maxWidth: '100px', flex: 1 }}
             />
             <Button

@@ -27,7 +27,7 @@ export default function ResultTable({ result }: Props) {
           {result.map(([word, score], index) => (
             <tr key={index}>
               <td>{word}</td>
-              <td>{score.toFixed(2)}</td> {/* Format score to 2 decimal places */}
+              <td>{score.toFixed(2)}</td>
             </tr>
           ))}
         </tbody>

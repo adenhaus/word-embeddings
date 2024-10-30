@@ -9,6 +9,7 @@ import Analogy from './components/Analogy';
 import Groups from './components/Groups';
 import Similarity from './components/Similarity';
 import theme from './theme.tsx';
+import About from './components/About.tsx';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/analogy" element={<Analogy />} />
             <Route path="/similarity" element={<Similarity />} />
             <Route path="/groups" element={<Groups />} />
+            <Route path="/about" element={<About />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -28,6 +28,7 @@ const Analogy = () => {
       } else {
         setSnackText('An unexpected error occurred');
       }
+      setResult([]);
     }
   };
 
@@ -69,7 +70,7 @@ const Analogy = () => {
             <Input
               placeholder="Man"
               value={man}
-              onChange={(e) => { setMan(e.target.value.replace(/\s+/g, '').toLowerCase()); console.log(e.target.value) }} // Disallow spaces
+              onChange={(e) => {setMan(e.target.value.replace(/\s+/g, '').toLowerCase())}} // Disallow spaces
               sx={{ minWidth: '100px', maxWidth: '100px', flex: 1 }}
             />
             <Typography level='body-md' sx={{ whiteSpace: 'nowrap' }}>
@@ -93,11 +94,14 @@ const Analogy = () => {
             <Typography level='body-md' sx={{ whiteSpace: 'nowrap' }}>
               is to
             </Typography>
-            <Input
+            <Typography fontSize={20} fontWeight={700} variant="plain" color='primary' level='body-md' sx={{ whiteSpace: 'nowrap', px: 1.2 }}>
+              ?
+            </Typography>
+            {/* <Input
               placeholder="?"
               disabled
               sx={{ minWidth: '35px', maxWidth: '35px', flex: 1 }}
-            />
+            /> */}
             <Button
               sx={{ minWidth: '40px', maxWidth: '40px' }}
               variant='outlined'
