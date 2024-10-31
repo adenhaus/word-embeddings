@@ -3,19 +3,22 @@ import { Box, Link, Typography } from "@mui/joy";
 const About = () => {
   return (
     <Box sx={{ px: { xs: '15px', md: '50px', lg: '50px' } }}>
+
+      <Typography level='h1' sx={{ mb: 1, mt: 8 }}>
+        What are word embeddings?
+      </Typography>
       <Box sx={{ mt: 2 }}>
         <img
           src='/graph.png'
           alt="Image of a graph with three axes and word vectors."
           style={{ maxWidth: '500px', width: '100%', display: 'block', margin: '0 auto' }}
         />
+        <Typography level='body-xs' sx={{ mb: 8, mt: 1 }}>
+          I do not own this image. Credit to <Link href='https://www.youtube.com/shorts/FJtFZwbvkI4' target='_blank'>3blue1brown</Link>.
+        </Typography>
       </Box>
-      <Typography level='body-xs' sx={{ mb: 1, mt: 8 }}>
-        I do not own this image. Credit to <Link href='https://www.youtube.com/shorts/FJtFZwbvkI4' target='_blank'>3blue1brown</Link>.
-      </Typography>
-      <Typography level='h1' sx={{ mb: 1, mt: 8 }}>
-        What are word embeddings?
-      </Typography>
+
+
       <Typography level='body-md' sx={{ mb: 1 }}>
         <Link href='https://www.ibm.com/topics/neural-networks' target='_blank'>Neural networks</Link>, which are machine learning architectures used to power many of the AI applications we use today, require data to be in a numerical format. However, words are not numerical. Word embeddings are a way to convert words into numerical vectors. These vectors can then be used as input to a neural network.
       </Typography>

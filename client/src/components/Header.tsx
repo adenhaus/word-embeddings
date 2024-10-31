@@ -3,7 +3,7 @@ import IconButton from '@mui/joy/IconButton';
 import Sheet from '@mui/joy/Sheet';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import { toggleSidebar } from '../utils';
-import { Box, Dropdown, Link, Menu, MenuButton, MenuItem, Typography } from '@mui/joy';
+import { Box, DialogTitle, Drawer, Dropdown, Link, Menu, MenuButton, MenuItem, ModalClose, Typography } from '@mui/joy';
 import ColorSchemeToggle from './ColorSchemeToggle';
 import NavLinks from './NavLinks';
 import { useState } from 'react';
@@ -11,6 +11,7 @@ import { MenuRounded } from '@mui/icons-material';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
@@ -63,7 +64,14 @@ export default function Header() {
                   textDecoration: 'none',
                 },
               }}>
-              <Typography level='body-lg'>
+              <Box sx={{ mt: 1, mr: 2 }}>
+                <img
+                  src='/icon.png'
+                  alt="Image of a graph with three axes and word vectors."
+                  style={{ width: '30px' }}
+                />
+              </Box>
+              <Typography level='body-lg' sx={{ display: { xs: 'none', sm: 'block' } }}>
                 Word Embeddings Playground
               </Typography>
             </Link>
@@ -85,32 +93,31 @@ export default function Header() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              <Dropdown>
-                <MenuButton
-                  slots={{ root: IconButton }}
-                  slotProps={{ root: { variant: 'outlined', color: 'neutral', size: 'sm' } }}
-                >
-                  <MenuRounded />
-                </MenuButton>
-                <Menu>
-                  <Box
-                    sx={{
-                      display: { xs: 'flex', md: 'none' },
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      p: 2,
-                      gap: 1,
-                      width: '200px',
-                    }}
-                  >
-                    <NavLinks expanded={false} />
-                  </Box>
-                </Menu>
-              </Dropdown>
+              <IconButton
+                variant='outlined'
+                size='sm'
+                onClick={() => setOpenDrawer(true)}
+              >
+                <MenuRounded />
+              </IconButton>
             </Box>
           </Box>
         </Box>
       </Sheet >
+      <Drawer open={openDrawer} anchor='right' onClose={() => setOpenDrawer(false)} sx={{ display: { md: 'none' } }}>
+        <ModalClose />
+        <Box sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 2,
+          p: 2,
+          mt: 5,
+          justifyContent: 'center',
+        }}
+        >
+          <NavLinks expanded={false} />
+        </Box>
+      </Drawer>
       {/* <Sheet
         sx={{
           display: { xs: 'flex', md: 'none' },

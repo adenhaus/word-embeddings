@@ -1,6 +1,7 @@
 import { Box } from "@mui/joy";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
+import Footer from "./Footer";
 
 const PageLayout = () => {
   return (
@@ -33,6 +34,7 @@ const PageLayout = () => {
         >
           <Outlet />
         </Box>
+        <Footer />
       </Box>
       {/* <Box
         component="main"
