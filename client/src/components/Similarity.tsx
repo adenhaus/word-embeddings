@@ -20,6 +20,7 @@ const Similarity = () => {
     try {
       const data = await callApi(url);
       setResult(data);
+      setSnackText('');
     } catch (error) {
       if (error instanceof Error) {
         setSnackText(error.message);
@@ -33,6 +34,7 @@ const Similarity = () => {
   const handleClear = () => {
     setWord("");
     setResult([]);
+    setSnackText('');
   };
 
   return (

@@ -21,6 +21,7 @@ const Analogy = () => {
 
     try {
       const data = await callApi(url);
+      setSnackText('');
       setResult(data);
     } catch (error) {
       if (error instanceof Error) {
@@ -37,6 +38,7 @@ const Analogy = () => {
     setMan("");
     setWoman("");
     setResult([]);
+    setSnackText('');
   };
 
   // Check if all three inputs have text

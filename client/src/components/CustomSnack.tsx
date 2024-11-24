@@ -10,10 +10,11 @@ interface Props {
 const CustomSnack = (props: Props) => {
   return (
     <Snackbar
-      autoHideDuration={3000}
+      autoHideDuration={7000}
       open={props.open}
       anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       variant='outlined'
+      color='warning'
       onClose={(event, reason) => {
         if (reason === 'clickaway') {
           return;

@@ -20,13 +20,13 @@ export async function callPcaApi(words, model = "glove-wiki-gigaword-100") {
 
 const Groups = () => {
   const [data, setData] = useState([]);
-  const [words, setWords] = useState(Array(10).fill("")); // Array of 10 empty strings for word inputs
+  const [words, setWords] = useState(Array(10).fill(""));
   const [snackText, setSnackText] = useState("");
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const filteredWords = words.filter(word => word); // Only send non-empty words
+    const filteredWords = words.filter(word => word);
 
     if (filteredWords.length === 0) {
       setSnackText("Please enter at least one word.");
@@ -36,14 +36,16 @@ const Groups = () => {
     try {
       const pcaData = await callPcaApi(filteredWords);
       setData(pcaData);
+      setSnackText('');
     } catch (err) {
       setSnackText(err.message);
     }
   };
 
   const handleClear = () => {
-    setWords(Array(10).fill("")); // Reset words to empty
-    setData([]); // Clear data to hide chart
+    setWords(Array(10).fill(""));
+    setData([]);
+    setSnackText('');
   };
 
   const updateWord = (index, value) => {
@@ -60,7 +62,6 @@ const Groups = () => {
       display: 'flex',
       alignItems: 'center',
       flexDirection: { xs: 'column', lg: 'row' },
-      // backgroundColor: 'blue',
     }}
     >
 
@@ -73,7 +74,6 @@ const Groups = () => {
           justifyContent: 'center',
           px: 2,
           py: 2,
-          // backgroundColor: 'red',
           width: { xs: '100%', lg: '100%' },
         }}
       >

@@ -26,19 +26,22 @@ export function toggleSidebar() {
 }
 
 export async function callApi(url: string) {
-  const response = await fetch(url);
+  const timeout = new Promise((_, reject) =>
+    setTimeout(() => reject(new Error('The server is being cold started as this is the first request sent in a while. Please wait two minutes and try again, then responses will be fast.')), 2000)
+  );
 
-  if (response.status === 400) {
-    const errorData = await response.json();
-    throw new Error(errorData.error);
-  } else if (!response.ok) {
-    throw new Error('An unknown error occurred');
-  }
+  const fetchRequest = fetch(url).then(async (response) => {
+    if (response.status === 400) {
+      const errorData = await response.json();
+      throw new Error(errorData.error);
+    } else if (!response.ok) {
+      throw new Error('An unknown error occurred');
+    }
 
-  const data: { word: string; score: number }[] = await response.json();
+    const data: { word: string; score: number }[] = await response.json();
+    // Convert the JSON data to a list of tuples
+    return data.map(({ word, score }) => [word, score]);
+  });
 
-  // Convert the JSON data to a list of tuples
-  const resultTuples: [string, number][] = data.map(({ word, score }) => [word, score]);
-
-  return resultTuples;
+  return Promise.race([fetchRequest, timeout]) as Promise<[string, number][]>;
 }
