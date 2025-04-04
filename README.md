@@ -1,2 +1,6 @@
-# word-embeddings
-Frontend, server and vectors for Word Embeddings playground web app.
+# Word Embeddings Playground
+Frontend code for Word Embeddings playground web app.
+
+Try it at: https://wordembeddings.xyz/about
+
+Frontend code hosted by Netlify, server hosted by PythonAnywhere.
